@@ -20,7 +20,7 @@ export default class App extends Component {
   }
   
   performSearch = (query = 'baju') => {
-    axios.get(`https://services.mataharimall.com/products/v0.2/products/search?q=${query}`)
+    axios.get(`https://services.mataharimall.com/products/v0.2/products/search?q=${query}&per_page=36&sort=date+DESC`)
       .then(response => {
         this.setState({
           query: query,

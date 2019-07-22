@@ -11,6 +11,7 @@
   "dependencies": {
     "@reach/router": "^1.2.1",
     "axios": "^0.19.0",
+    "bootstrap-less": "^3.3.8",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-static": "^7.0.0",
@@ -27,7 +28,10 @@
     "eslint-plugin-import": "2.x",
     "eslint-plugin-jsx-a11y": "6.x",
     "eslint-plugin-react": "7.x",
+    "grunt": "^1.0.4",
     "grunt-contrib-less": "^2.0.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "jit-grunt": "^0.10.0",
     "serve": "10.1.2"
   }
 }
