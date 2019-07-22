@@ -13,9 +13,9 @@ const ProductList = props => {
   }
 
   return(
-    <ul className="product-list">
+    <div className="row">
       {products}
-    </ul> 
+    </div> 
   );
 }
 

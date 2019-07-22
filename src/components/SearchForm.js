@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import logoSearch from '../assets/images/search.svg';
 
 export default class SearchForm extends Component {
   
@@ -19,13 +20,12 @@ export default class SearchForm extends Component {
   render() {  
     return (
       <form className="search-form" onSubmit={this.handleSubmit} >
-        <label className="is-hidden" htmlFor="search">Search</label>
         <input type="search" 
                onChange={this.onSearchChange}
                name="search" 
                ref={(input) => this.query = input}
                placeholder="Search..." />
-
+               <button className="search-btn"><img src="https://cdnjs.cloudflare.com/ajax/libs/topcoat-icons/0.1.0/svg/search.svg"/></button>
       </form>      
     );
   }

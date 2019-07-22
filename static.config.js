@@ -1,6 +1,6 @@
 import path from 'path'
 import axios from 'axios'
-
+import withFiles from 'file-loader'
 export default {
   getRoutes: async () => {
     const { data: posts } = await axios.get(
@@ -8,19 +8,19 @@ export default {
     )
 
     return [
-      {
-        path: '/blog',
-        getData: () => ({
-          posts,
-        }),
-        children: posts.map(post => ({
-          path: `/post/${post.id}`,
-          template: 'src/containers/Post',
-          getData: () => ({
-            post,
-          }),
-        })),
-      },
+      // {
+      //   path: '/blog',
+      //   getData: () => ({
+      //     posts,
+      //   }),
+      //   children: posts.map(post => ({
+      //     path: `/post/${post.id}`,
+      //     template: 'src/containers/Post',
+      //     getData: () => ({
+      //       post,
+      //     }),
+      //   })),
+      // },
     ]
   },
   plugins: [
