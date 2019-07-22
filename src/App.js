@@ -1,33 +1,55 @@
-import React from 'react'
-import { Root, Routes, addPrefetchExcludes } from 'react-static'
-//
-import { Link, Router } from 'components/Router'
-import Dynamic from 'containers/Dynamic'
+import React, { Component } from 'react';
+import './App.css';
+// import './assets/css/bootstrap.min.css';
+import axios from 'axios';
+import SearchForm from './components/SearchForm';
+import ProductList from './components/ProductList';
 
-import './app.css'
+export default class App extends Component {
+  
+  constructor() {
+    super();
+    this.state = {
+      products: [],
+      loading: true
+    };
+  } 
 
-// Any routes that start with 'dynamic' will be treated as non-static routes
-addPrefetchExcludes(['dynamic'])
-
-function App() {
-  return (
-    <Root>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-        <Link to="/blog">Blog</Link>
-        <Link to="/dynamic">Dynamic</Link>
-      </nav>
-      <div className="content">
-        <React.Suspense fallback={<em>Loading...</em>}>
-          <Router>
-            <Dynamic path="dynamic" />
-            <Routes path="*" />
-          </Router>
-        </React.Suspense>
+  componentDidMount() {
+    this.performSearch();
+  }
+  
+  performSearch = (query = 'baju') => {
+    axios.get(`https://services.mataharimall.com/products/v0.2/products/search?q=${query}`)
+      .then(response => {
+        this.setState({
+          query: query,
+          products: response.data["data"]["products"],
+          loading: false
+        });
+      })
+      .catch(error => {
+        console.log('Error fetching and parsing data', error);
+      });    
+  }
+  
+  render() { 
+    return (
+      <div>
+        <div className="main-header">
+          <div className="inner">
+            <h1 className="main-title">Product Search</h1>
+            <SearchForm onSearch={this.performSearch} />      
+          </div>   
+        </div>    
+        <div className="main-content">
+          {
+            (this.state.loading)
+             ? <p>Loading...</p>
+             : <div><h2>{this.state.query}</h2><ProductList data={this.state.products} /></div>
+          }          
+        </div>
       </div>
-    </Root>
-  )
+    );
+  }
 }
-
-export default App

@@ -27,6 +27,7 @@
     "eslint-plugin-import": "2.x",
     "eslint-plugin-jsx-a11y": "6.x",
     "eslint-plugin-react": "7.x",
+    "grunt-contrib-less": "^2.0.0",
     "serve": "10.1.2"
   }
 }
