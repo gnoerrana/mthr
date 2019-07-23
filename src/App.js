@@ -26,7 +26,8 @@ export default class App extends Component {
         this.setState({
           query: query,
           products: response.data["data"]["products"],
-          loading: false
+          loading: false,
+          count: response.data["data"]["info"].product_count
         });
       })
       .catch(error => {
@@ -46,7 +47,7 @@ export default class App extends Component {
           {
             (this.state.loading)
              ? <div className="container mobile-container loader"><img className="loading" src={logo}/></div>
-             : <div className="container mobile-container"><div className="result-text"><h2>"{this.state.query}"</h2></div><ProductList data={this.state.products} /></div>
+             : <div className="container mobile-container"><div className="result-text"><h2>"{this.state.query}"</h2><p>{ this.state.count} products found</p></div><ProductList data={this.state.products} /></div>
           }          
         </div>
       </div>
